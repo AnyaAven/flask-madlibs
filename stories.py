@@ -24,6 +24,9 @@ class Story:
         self.prompts = words
         self.template = text
 
+    def __repr__(self):
+        return f""" Story class prompts={self.prompts} template={self.template}"""
+
     def get_result_text(self, answers):
         """Return result text from dictionary of {prompt: answer, ...}."""
 
@@ -33,6 +36,8 @@ class Story:
             text = text.replace("{" + key + "}", val)
 
         return text
+
+
 
 
 # Here's a story to get you started
