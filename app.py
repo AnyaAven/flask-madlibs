@@ -11,8 +11,11 @@ debug = DebugToolbarExtension(app)
 
 @app.get("/")
 def display_madlibs_form():
-    """ Display madlibs form return template """
+    """ Display madlibs form, return template """
 
     prompts = silly_story.prompts
 
-    return render_template("questions.jinja")
+    return render_template(
+        "questions.jinja",
+        story_prompts=prompts
+    )
