@@ -9,17 +9,28 @@
   <div class="ms-3 me-3">
     <form action="/results" class="pb-4">
 
+      <!-- comment, this comment does go to the browser
+
+      {{ prompt }} cannot use jinja here to populate the variable
+
+      -->
       {% for prompt in story_prompts %}
-      <div class="mb-3 row">
-        <label class="col-5 col-form-label text-end">{{ prompt }}</label>
-        <div class="col-7">
-          <input
-              name="{{ prompt }}"
-              required
-              aria-label="{{ prompt }}"
-              class="form-control">
+        <div class="mb-3 row">
+        {# this comment does not get sent over to the browser
+
+          Don't forget to indent in a for loop
+
+          {{ prompt }} CAN use jinja here to populate the variable
+         #}
+          <label class="col-5 col-form-label text-end">{{ prompt }}</label>
+          <div class="col-7">
+            <input
+                name="{{ prompt }}"
+                required
+                aria-label="{{ prompt }}"
+                class="form-control">
+          </div>
         </div>
-      </div>
       {% endfor %}
 
       <button class="btn btn-primary btn-lg w-100">
