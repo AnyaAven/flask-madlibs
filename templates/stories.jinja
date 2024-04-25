@@ -12,7 +12,8 @@
 
             <label class="col-5 col-form-label text-end">Choose a story: </label>
             <div class="col-7">
-                <select name="storylist">
+                <select name="storylist"
+                class="form-select">
                     {% for story_name in madlib_story_names %}
                         <option value="{{ story_name }}" name="story_name">{{ story_name }}</option>
                     {% endfor %}
