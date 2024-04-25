@@ -13,8 +13,6 @@ debug = DebugToolbarExtension(app)
 def display_story_options():
     """ Display all optional stories """
 
-    # TODO: can format our story names first to look like Scary instead of scary_story
-    # before adding them into render
     return render_template(
         "stories.jinja",
         madlib_story_names=stories.keys()
@@ -45,5 +43,6 @@ def display_madlibs_result():
 
     return render_template(
         "results.jinja",
-        madlib_story=story_text
+        madlib_story=story_text,
+        story_name=story
     )
