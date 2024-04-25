@@ -11,7 +11,7 @@ debug = DebugToolbarExtension(app)
 
 @app.get("/")
 def display_madlibs_form():
-    """ Display madlibs form, return template """
+    """ Display madlibs form, returns rendered template """
 
     prompts = silly_story.prompts
 
@@ -23,7 +23,9 @@ def display_madlibs_form():
 
 @app.get("/results")
 def display_madlibs_result():
-    """ Displays the form results of madlibs into our story text"""
+    """ Creates and displays story rendered from the madlibs form inputs,
+        return rendered template
+    """
 
     answers = {}
     for prompt_key in silly_story.prompts:
@@ -31,7 +33,6 @@ def display_madlibs_result():
 
         answers[prompt_key] = text
 
-    print("ANSWERS", answers)
     story_text = silly_story.get_result_text(answers=answers)
 
     return render_template(
