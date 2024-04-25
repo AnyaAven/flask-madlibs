@@ -19,3 +19,22 @@ def display_madlibs_form():
         "questions.jinja",
         story_prompts=prompts
     )
+
+
+@app.get("/results")
+def display_madlibs_result():
+    """ Displays the form results of madlibs into our story text"""
+
+    answers = {}
+    for prompt_key in silly_story.prompts:
+        text = request.args.get(prompt_key)
+
+        answers[prompt_key] = text
+
+    print("ANSWERS", answers)
+    story_text = silly_story.get_result_text(answers=answers)
+
+    return render_template(
+        "results.jinja",
+        madlib_story=story_text
+        )
