@@ -34,12 +34,15 @@ def display_madlibs_form():
     )
 
 
-@app.get("/results")
+@app.post("/results")
 def display_madlibs_result():
     """ Creates and displays story rendered from the madlibs form inputs """
 
-    story = request.args.get("storyname")
-    story_text = stories[story].get_result_text(request.args)
+    story = request.form.get("storyname")
+
+    print("story", story, request.args)
+
+    story_text = stories[story].get_result_text(request.form)
 
     return render_template(
         "results.jinja",
