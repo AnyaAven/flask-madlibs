@@ -1,23 +1,36 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 
-from stories import silly_story
+from stories import stories
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret"
 
 debug = DebugToolbarExtension(app)
 
+@app.get("/stories")
+def display_story_options():
+    """ Display all optional stories """
 
-@app.get("/")
+    #TODO: can format our story names first to look like Scary instead of scary_story
+    # before adding them into render
+    return render_template(
+        "stories.jinja",
+        madlib_story_names=stories.keys()
+        )
+
+
+@app.get("/stories/form")
 def display_madlibs_form():
     """ Display madlibs form """
 
-    prompts = silly_story.prompts
+    story = request.args.get("storylist")
+    prompts = stories[story].prompts
 
     return render_template(
         "questions.jinja",
-        story_prompts=prompts #NOTE: should this be spaced out? Keyword arguments
+        story_prompts=prompts, #NOTE: should this be spaced out? Keyword arguments
+        story_name=story
     )
 
 
@@ -25,7 +38,8 @@ def display_madlibs_form():
 def display_madlibs_result():
     """ Creates and displays story rendered from the madlibs form inputs """
 
-    story_text = silly_story.get_result_text(request.args)
+    story = request.args.get("storyname")
+    story_text = stories[story].get_result_text(request.args)
 
     return render_template(
         "results.jinja",

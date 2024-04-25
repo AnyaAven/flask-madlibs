@@ -9,6 +9,8 @@
   <div class="ms-3 me-3">
     <form action="/results" class="pb-4">
 
+      <h2 class="pt-4 mb-3 text-center">{{ story_name }}</h2>
+
       <!-- comment, this comment does go to the browser
 
       {{ prompt }} cannot use jinja here to populate the variable
@@ -32,6 +34,11 @@
           </div>
         </div>
       {% endfor %}
+
+      <input
+        name="storyname"
+        value="{{ story_name }}"
+        type="hidden">
 
       <button class="btn btn-primary btn-lg w-100">
         Make My Story!
