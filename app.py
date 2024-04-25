@@ -28,7 +28,7 @@ def display_madlibs_form():
 
     return render_template(
         "questions.jinja",
-        story_prompts=prompts,  # NOTE: should this be spaced out? Keyword arguments
+        story_prompts=prompts,  # NOTE: should this be spaced out? Yes, Keyword arguments in Py
         story_name=story
     )
 
